@@ -1,0 +1,31 @@
+ curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+ 1156  chmod +x kops-linux-amd64
+ 1157  sudo mv kops-linux-amd64 /usr/local/bin/kops
+ 1158  aws s3api create-bucket --bucket k8-kops-state-store --region us-east-1
+ 1159  export KOPS_CLUSTER_NAME=k8.k8s.local
+ 1160  export KOPS_STATE_STORE=s3://k8-kops-state-store
+ 1161  kops create cluster --help
+ 1162  kops create cluster --node-count=2 --node-size=t2.small --zones=us-east-1a
+ 1163  kops edit cluster
+ 1164  kops update cluster --name ${KOPS_CLUSTER_NAME} --yes
+ 1165  clear
+ 1166  aws s3api create-bucket --bucket k8-kops-state-store --region ap-southeast-1
+ 1167  aws s3api create-bucket --bucket k8-kops-state-store --region ap-southeast
+ 1168  aws s3api create-bucket --bucket k8-kops-state-store --region ap-southeast-1
+ 1169  aws s3api create-bucket --bucket k8-kops-state-store --region ap-southeast-1 --create-bucket-configuration LocationConstraint=ap-southeast-1
+ 1170  aws s3api create-bucket --bucket k8-kops-state-store-s3 --region ap-southeast-1 --create-bucket-configuration LocationConstraint=ap-southeast-1
+ 1171  export KOPS_CLUSTER_NAME=k8.k8s.local
+ 1172  export KOPS_STATE_STORE=s3://k8-kops-state-store
+ 1173  kops create cluster --node-count=2 --node-size=t2.small --zones=ap-southeast-1a
+ 1174  export KOPS_STATE_STORE=s3://k8-kops-state-store-s3
+ 1175  kops create cluster --node-count=2 --node-size=t2.small --zones=ap-southeast-1a
+ 1176  kops edit cluster
+ 1177  kops update cluster --name ${KOPS_CLUSTER_NAME} --yes
+ 1178  kops validate cluster
+ 1179  kubectl get nodes
+ 1180  kops validate cluster
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
+kubectl cluster-info
+kops get secrets kube --type secret -oplaintext
+
+
